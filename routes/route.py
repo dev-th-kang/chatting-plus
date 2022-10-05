@@ -5,6 +5,7 @@ from config.db import conn
 from models.todo import Todo
 router = APIRouter()
 db = conn.fastapi.todo
+
 @router.post("/todo")
 async def createTodo(todo:Todo):
     #print(todo)
@@ -14,9 +15,16 @@ async def createTodo(todo:Todo):
 
 @router.get("/todo/{no}")
 async def readTodo(id:str):
-    return {"id":id}
+    result = db.find_one(dict({"title":id}))
+    resValue = {"title":result['title'],"contents":result['contents']}
+    return resValue
 
     
 @router.get("/todo")
 async def readAllTodo():
-    return 0
+    results = db.find()
+    resValue = []
+    for s in results:
+        print(s)
+        resValue.append({"title":s['title'],"contents":s['contents']})
+    return resValue
