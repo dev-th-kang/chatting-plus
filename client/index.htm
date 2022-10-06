@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo list</h1>
+    <input class="todo_title" type="text" placeholder="title">
+    <input class="todo_contents" type="text" placeholder="content">
+    <button class="btn" type="button">제출</button>
+
+    <div>
+        <h2> 목록 </h2>
+        <div class="list"></div>
+    </div>
+    <script>
+        const listDiv = document.querySelector('.list')
+        const btn = document.querySelector('.btn');
+        document.addEventListener('DOMContentLoaded',()=>{
+            fetch("http://localhost:8000/todo", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            })
+            .then((response) => response.json())
+            .then((data) =>{
+                for(var i=data.length-1;i>=0;i--){
+                    listDiv.innerHTML+=
+                    `<small class="list_title"> ${data[i].title}</small><br>
+                    <h2 class="list_contents">${data[i].contents}</h2>
+                    <hr>
+                    `
+
+                }
+            });
+        })
+        btn.addEventListener('click',()=>{
+            const title = document.querySelector('.todo_title').value;
+            const contents = document.querySelector('.todo_contents').value;
+            //console.log(title+" "+content);
+            fetch("http://localhost:8000/todo", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({
+                'title': title,
+                'contents': contents,
+            }),
+            })
+            .then((response) => response.json())
+            .then((data) =>{
+                console.log(data);
+                location.reload();
+            });
+        })
+    </script>
+</body>
+</html>
