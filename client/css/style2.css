@@ -1,0 +1,111 @@
+.frm_main{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.del_btn:hover{
+    cursor:pointer;
+}
+.list{
+
+    overflow-y: scroll;
+    height: 420px;
+}
+.frm{
+    padding-top: 20px;
+    width: 300px;
+    height: 500px;
+    border-radius: 15px 15px 15px 15px;
+    background-color: white;
+    border: solid #baeadf 10px;
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    text-align: center;
+}
+.frm:hover{
+    transition: all 0.5s ease-out;
+    border-color: #1AAB8A;
+}
+.todo_title{
+    width: 220px;
+    height: 20px;
+    border-radius:7px;
+}
+.menu_btn:hover{
+    
+    background-color: #1AAB8A;
+}
+.menu_btn{
+    color: white;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 130px;
+    height: 30px;
+    background-color: #baeadf;
+    margin-top: 6px;
+    border:none;
+    font-size:1.5ch;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    border-radius: 15px 15px 15px 15px;
+    outline:none;
+}
+.todo_contents{
+    height:30px; 
+    width: 205px;
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    font-size: 17px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+    border-radius: 15px 0px 0px 0px;
+    font-size: 12px;
+}
+.todo_title:focus{
+border-color: #1AAB8A;
+}
+.btn{
+    margin-top: 2px;
+    background:#1AAB8A;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:30px; 
+    width: 220px;
+    font-size:1.6ch;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    border-radius: 0px 0px 15px 0px;
+    outline:none;
+}
+.btn:hover{
+    background:#fff;
+    color:#1AAB8A;
+}
+.btn:before,.btn:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #1AAB8A;
+    transition:400ms ease all;
+}
+.btn:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+}
+.btn:hover:before,.btn:hover:after{
+    width:100%;
+    transition:800ms ease all;
+}
+

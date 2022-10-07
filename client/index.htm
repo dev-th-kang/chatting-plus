@@ -4,50 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style1.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo list</h1>
-    <input class="todo_title" type="text" placeholder="title">
-    <input class="todo_contents" type="text" placeholder="content">
-    <button class="btn" type="button">제출</button>
-
-    <div>
-        <h2> 목록 </h2>
-        <div class="list"></div>
+    <div class="frm_main">
+    <div class="frm" >
+        <h3>📃TODO</h3>
+        <input class="todo_contents" type="text" placeholder="contents"><br>
+        <button class="btn" type="button">제출</button>
+    </div>
+        <button class="menu_btn create_btn"></button>
+        <button class="menu_btn list_btn"></button>
     </div>
     <script>
         const listDiv = document.querySelector('.list')
         const btn = document.querySelector('.btn');
+        const positBtn = document.querySelector('.create_btn');
+        const nonpositBtn = document.querySelector('.list_btn');
+        positBtn.addEventListener('click',()=>{
+            location.href='./index.htm';
+        })
+        nonpositBtn.addEventListener('click',()=>{
+            location.href='./list.htm';
+        })
         document.addEventListener('DOMContentLoaded',()=>{
-            fetch("http://localhost:8000/todo", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            })
-            .then((response) => response.json())
-            .then((data) =>{
-                for(var i=data.length-1;i>=0;i--){
-                    listDiv.innerHTML+=
-                    `<small class="list_title"> ${data[i].title}</small><br>
-                    <h2 class="list_contents">${data[i].contents}</h2>
-                    <hr>
-                    `
-
-                }
-            });
+            positBtn.style = "background-color:#1AAB8A;"
+            positBtn.innerHTML = "✅TODO 작성";
+            nonpositBtn.innerHTML = "🔥TODO 목록";
         })
         btn.addEventListener('click',()=>{
-            const title = document.querySelector('.todo_title').value;
             const contents = document.querySelector('.todo_contents').value;
+            document.querySelector('.todo_contents').value = "";
             //console.log(title+" "+content);
-            fetch("http://localhost:8000/todo", {
-            method: "POST",
-            headers: {
+            if(contents == ""){
+                alert("값을 입력해주세요!");
+                return;
+            }
+            console.log(JSON.parse(sessionStorage.getItem("user")));
+            fetch(`http://localhost:8000/todo/${JSON.parse(sessionStorage.getItem("user")).userid}`, {
+                method: "POST",
+                headers: {
                 "Content-Type": "application/json",
             }, body: JSON.stringify({
-                'title': title,
                 'contents': contents,
             }),
             })

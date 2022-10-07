@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style2.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="frm_main">
+    <div class="frm" >
+        <h3>📃TODO LIST</h3>
+        <div class="list" style="text-align: left;"></div>
+    </div>
+        <button class="menu_btn create_btn"></button>
+        <button class="menu_btn list_btn"></button>
+    </div>
+    <script>
+        const listDiv = document.querySelector('.list')
+        const btn = document.querySelector('.btn'); 
+        const nonpositBtn = document.querySelector('.create_btn');
+        const positBtn = document.querySelector('.list_btn');
+        positBtn.addEventListener('click',()=>{
+            location.href='./list.htm';
+        })
+        nonpositBtn.addEventListener('click',()=>{
+            location.href='./index.htm';
+        })
+        function deleteList(contents){
+            console.log(contents)
+            fetch(`http://localhost:8000/todo/${contents}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            })
+            .then((response) => response.json())
+            .then((data) =>{
+                alert("삭제되었습니다.")
+                window.location.reload()
+            })
+        }
+        document.addEventListener('DOMContentLoaded',()=>{
+            positBtn.style = "background-color:#1AAB8A;"
+            positBtn.innerHTML = "🔥TODO 목록";
+            nonpositBtn.innerHTML = "✅TODO 작성";
+            fetch(`http://localhost:8000/todo/${JSON.parse(sessionStorage.getItem("user")).userid}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "userid":sessionStorage.getItem('user').userid
+            },
+            })
+            .then((response) => response.json())
+            .then((data) =>{
+                for(var i=data.length-1;i>=0;i--){
+                    console.log(data[i].contents)
+                    listDiv.innerHTML+=
+                    `
+                    <small>
+
+                        <h5 style = "margin-left: 10px;" class="list_contents">
+                            <button class='del_btn' onclick="javascript:deleteList('${data[i].contents}')">❌</button>    
+                            ${data.length-i}번 : ${data[i].contents}
+                        </h5>
+                    </small>
+                    <hr>
+                    
+        
+                    `
+                    const delBtn = document.querySelectorAll('.del_btn')
+                    for(let i =0; i<delBtn.length;i++){
+                        delBtn[i].style ='background-color:white;border: 0px'
+                    }
+                }
+
+            });
+        })
+    </script>
+</body>
+</html>

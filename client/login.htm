@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style4.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="frm_main">
+    <div class="frm" >
+        <h3 align="center">🌈Login</h3>
+        <div class="list">
+            <b>userid:</b><br>
+            <input class="box userid" type="text"><br>
+            <b>password:</b> <br>
+            <input class="box password" type="password"><br>
+            <button class="login_send">
+                login
+            </button><br>
+            <button class="goJoin" onClick="location.href='./join.htm'">join</button>
+        </div>
+    <script>
+        document.querySelector('.login_send').addEventListener('click',()=>{
+            const userid = document.querySelector('.userid').value;
+            const password = document.querySelector('.password').value;
+            if(userid != "" && password != ""){
+                fetch("http://localhost:8000/login/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },body:JSON.stringify({
+                        'userid':userid,
+                        'password':password
+                    })
+                    })
+                    .then((response) => response.json())
+                    .then((data) =>{   
+                        if(data.msg =="succeed"){
+                            const userinfo = {'userid':data.userid,'name':data.name}
+                            sessionStorage.setItem('user',JSON.stringify(userinfo))
+                            const useritem = sessionStorage.getItem('user')
+                            alert('로그인이 완료되었습니다.')
+                            location.href="./index.htm"
+                        }else{
+                            alert("아이디나 비밀번호를 잘못입력하였습니더ㅏ.");
+                            return;
+                        }
+                    });
+            }else{
+                alert('빈칸이 없어야합니다..');
+            }
+        })
+    </script>
+</body>
+</html>
