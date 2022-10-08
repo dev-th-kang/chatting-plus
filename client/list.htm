@@ -34,6 +34,9 @@
             headers: {
                 "Content-Type": "application/json",
             },
+            body:JSON.stringify({
+                userid:JSON.parse(sessionStorage.getItem("user")).userid
+            }),
             })
             .then((response) => response.json())
             .then((data) =>{
@@ -62,7 +65,7 @@
 
                         <h5 style = "margin-left: 10px;" class="list_contents">
                             <button class='del_btn' onclick="javascript:deleteList('${data[i].contents}')">❌</button>    
-                            ${data.length-i}번 : ${data[i].contents}
+                            ${data.length-i}번 : <m class= "td_contents">${data[i].contents}</m>
                         </h5>
                     </small>
                     <hr>
@@ -72,6 +75,9 @@
                     const delBtn = document.querySelectorAll('.del_btn')
                     for(let i =0; i<delBtn.length;i++){
                         delBtn[i].style ='background-color:white;border: 0px'
+                    }
+                    const td_contents = document.querySelectorAll('.td_contents')
+                    for(let i =0; i<td_contents.length;i++){
                     }
                 }
 
