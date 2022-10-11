@@ -42,7 +42,12 @@ async def loginUser(user:User):
         print(x)
         return {"msg":"succeed",
             "token":x["token"]}
-
+@router.post("/logout")
+async def logoutUser(req:Request):
+    accessToken = req.headers["Authorization"]
+    if((userdb.logoutUser(accessToken))["msg"] == "succeed"):
+        return {"msg":"succeed"}
+    return {"msg":"error"}
 #DEF: todo
 @router.post("/todo")
 async def createTodo(todo:Todo, req:Request):
@@ -51,19 +56,6 @@ async def createTodo(todo:Todo, req:Request):
     #x.inserted_id
     print(x)
     return x
-
-@router.post("/todo/{userid}")
-async def createTodo(userid:str, todo:Todo):
-    x = tododb.createTodo(userid, dict(todo))
-    #x.inserted_id
-    return {'msg':'succeed'};
-
-@router.get("/todo/{userid}")
-async def readTodo(userid:str):
-    print("userid",userid)
-    res_array = tododb.lookupTodo(userid)
-    return res_array
-
     
 @router.get("/todo")
 async def readAllTodo(req:Request):

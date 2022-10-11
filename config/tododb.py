@@ -43,10 +43,3 @@ def lookupTodo(token):
         for s in results:
             res.append({"contents":s['contents'],"date":s['date']})
         return res
-
-def lookupTodos():
-    results = todo_query.find()
-    res = []
-    for s in results:
-        res.append({"contents":s['contents'],"date":s['date']})
-    return res

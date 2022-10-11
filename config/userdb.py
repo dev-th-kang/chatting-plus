@@ -31,7 +31,13 @@ def loginUser(user):
     else:
         return {'state':False,'msg': 'pw isnt corrent'};
 
-
+def logoutUser(token):
+    user_query = conn.fastapi.user_token
+    rows = user_query.delete_one({"token":token})
+    if(rows== None):
+        return {"msg":"error"}
+    else:
+        return {"msg":"succeed"}
 '''
 def deleteUser(user):
 
