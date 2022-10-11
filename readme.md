@@ -16,18 +16,18 @@
 
 
 # Design 구성 (프론트는 바닐라JS로 제작)
-* 로그인
-    ![image](https://user-images.githubusercontent.com/104962364/195106222-1ae77743-107a-4a92-8d74-adf03ea11d82.png)
+* 로그인<br>
+    <img src = "https://user-images.githubusercontent.com/104962364/195106222-1ae77743-107a-4a92-8d74-adf03ea11d82.png"  width="200" height="200">
 
-* 회원가입
-    ![image](https://user-images.githubusercontent.com/104962364/195106471-0923e5a1-1f35-402d-80f4-e435a372837c.png)
+* 회원가입<br>
+    <img src = "https://user-images.githubusercontent.com/104962364/195106471-0923e5a1-1f35-402d-80f4-e435a372837c.png" width="200" height="400">
 
 
-* 기능 폼1(추가 기능)
-    ![image](https://user-images.githubusercontent.com/104962364/195106626-df12c263-a444-4857-a1d6-8590c8e80528.png)
+* 기능 폼1(추가 기능)<br>
+    <img src = "https://user-images.githubusercontent.com/104962364/195106626-df12c263-a444-4857-a1d6-8590c8e80528.png"  width="200" height="200">
 
-* 기능 폼2(리스트 조회, node별 삭제 기능)
-    ![image](https://user-images.githubusercontent.com/104962364/195106832-8c7ec594-f2c1-4226-8196-68f7b4691339.png)
+* 기능 폼2(리스트 조회, node별 삭제 기능)<br>
+    <img src = "https://user-images.githubusercontent.com/104962364/195106832-8c7ec594-f2c1-4226-8196-68f7b4691339.png" width="200" height="400">
 
 
 # 보안해야되는 상황
