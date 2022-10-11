@@ -11,8 +11,3 @@
 ### mongodb
 > pymongo 모듈을 사용해서 처리
 
-
-### pydantic 공부하기
-
-### DB auto increase 기능 추가하기
-
