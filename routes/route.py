@@ -15,9 +15,9 @@ router = APIRouter()
 ## title은 겹칠수도 있는데 no가 안겹치게 
 ## 현재는 title 중점으로 만들었음
 
-@router.get("/auth")
-async def authToken(myToken:str):
-    token.authToken({"token":myToken})
+# @router.get("/auth")
+# async def authToken(myToken:str):
+#     token.authToken({"token":myToken})
 
     # TRUE FALSE 로 인증 확인 
     # 인증 메커니즘은 일단 유효성 판별 > 이후 DB 에 있는 token이랑 판별
