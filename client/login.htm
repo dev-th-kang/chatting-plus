@@ -38,12 +38,13 @@
                     .then((response) => response.json())
                     .then((data) =>{   
                         if(data.msg =="succeed"){
-                            const userinfo = {'userid':data.userid,'name':data.name}
-                            sessionStorage.setItem('user',JSON.stringify(userinfo))
-                            const useritem = sessionStorage.getItem('user')
+                            console.log(data)
+                            sessionStorage.setItem('token',JSON.stringify(data.token))
+                           //const useritem = sessionStorage.getItem('user')
                             alert('로그인이 완료되었습니다.')
                             location.href="./index.htm"
                         }else{
+                            console.log(data.msg)
                             alert("아이디나 비밀번호를 잘못입력하였습니더ㅏ.");
                             return;
                         }
